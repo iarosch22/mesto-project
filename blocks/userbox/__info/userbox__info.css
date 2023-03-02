@@ -1,0 +1,7 @@
+.userbox__info {
+    position: relative;
+    padding-right: 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
