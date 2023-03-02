@@ -12,7 +12,7 @@
         <header class="header">
             <img src="./images/logo.svg" alt="лого Место" class="logo">
         </header>
-        <main class="content"></main>
+        <main class="content">
             <div class="userbox">
                 <img src="./images/avatar.png" alt="аватар" class="userbox__avatar">
                 <div class="userbox__profile">
@@ -68,9 +68,21 @@
                     </div>
                 </div>
             </div>
+        </main>
         <footer class="footer">
             <span class="footer__copyright">&copy; 2020 Mesto Russia</span>
         </footer>
+        <div class="popup popup_opened">
+            <div class="popup__container">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="form">
+                    <input type="text" name="username" id="username" class="form__item" placeholder="Жак-Ив Кусто">
+                    <input type="text" name="status" id="status" class="form__item" placeholder="Исследователь океана">
+                    <input type="submit" value="Сохранить" class="form__btn">
+                </form>
+                <button class="popup__close-btn"></button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
