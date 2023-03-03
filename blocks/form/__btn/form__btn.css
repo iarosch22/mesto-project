@@ -21,5 +21,6 @@
     .form__btn {
         margin-top: 16px;
         height: 46px;
+        font-size: 14px;
     }
 }
