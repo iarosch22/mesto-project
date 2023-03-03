@@ -1,4 +1,5 @@
 .userbox__name {
+    max-width: 294px;
     margin: 0;
     text-overflow: ellipsis;
     overflow: hidden;

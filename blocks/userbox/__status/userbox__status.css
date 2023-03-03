@@ -1,4 +1,5 @@
 .userbox__status {
+    max-width: 294px;
     padding-top: 7px;
     text-overflow: ellipsis;
     overflow: hidden;
