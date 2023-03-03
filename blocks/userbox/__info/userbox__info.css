@@ -5,3 +5,10 @@
     flex-direction: column;
     gap: 16px;
 }
+
+@media screen and (max-width: 768px) {
+    .userbox__info {
+        padding-top: 26px;
+        padding-bottom: 36px;
+    }
+}

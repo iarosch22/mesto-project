@@ -5,3 +5,9 @@
     line-height: 1.22;
     color: #fff;
 }
+
+@media screen and (max-width: 768px) {
+    .userbox__status {
+        font-size: 14px;
+    }
+}

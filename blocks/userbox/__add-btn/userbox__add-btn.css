@@ -11,6 +11,13 @@
     background-repeat: no-repeat;
 }
 
+@media screen and (max-width: 768px) {
+    .userbox__add-btn {
+        margin: 0;
+        width: 282px;
+    }
+}
+
 .userbox__add-btn:hover {
     opacity: 0.6;
 }

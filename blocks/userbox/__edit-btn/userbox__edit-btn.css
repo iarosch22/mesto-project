@@ -16,3 +16,11 @@
 .userbox__edit-btn:hover {
     opacity: 0.6;
 }
+
+@media screen and (max-width: 768px) {
+    .userbox__edit-btn {
+        top: 34px;
+        width: 18px;
+        height: 18px;
+    }
+}

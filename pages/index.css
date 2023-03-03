@@ -10,6 +10,7 @@
 @import url(../blocks/logo/logo.css);
 
 @import url(../blocks/userbox/userbox.css);
+@import url(../blocks/userbox/__profile/userbox__profile.css);
 @import url(../blocks/userbox/__avatar/userbox__avatar.css);
 @import url(../blocks/userbox/__info/userbox__info.css);
 @import url(../blocks/userbox/__name/userbox__name.css);
@@ -31,6 +32,7 @@
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
+@import url(../blocks/popup/popup_opened.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__item/form__item.css);
