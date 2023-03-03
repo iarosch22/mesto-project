@@ -1,14 +1,15 @@
 .userbox__info {
     position: relative;
-    padding-right: 42px;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    gap: 23px;
+    align-items: baseline;
 }
 
 @media screen and (max-width: 768px) {
     .userbox__info {
-        padding-top: 26px;
-        padding-bottom: 36px;
+        padding-top: 24px;
+        padding-bottom: 33px;
+        gap: 7px;
+        padding-left: 25px;
     }
 }

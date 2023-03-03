@@ -6,6 +6,7 @@
     box-sizing: border-box;
     background-color: #000;
     border: 2px solid #fff;
+    border-radius: 2px;
     background-image: url(../../../images/add-btn.svg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -15,6 +16,7 @@
     .userbox__add-btn {
         margin: 0;
         width: 282px;
+        background-size: 16px 16px;
     }
 }
 

@@ -1,4 +1,8 @@
 .userbox__status {
+    padding-top: 7px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     margin: 0;
     font-size: 18px;
     font-weight: 400;
@@ -9,5 +13,6 @@
 @media screen and (max-width: 768px) {
     .userbox__status {
         font-size: 14px;
+        text-align: center;
     }
 }

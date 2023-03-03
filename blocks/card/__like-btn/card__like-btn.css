@@ -10,7 +10,7 @@
 }
 
 .card__like-btn:hover {
-    background-image: url(../../../images/heart-hover.svg);
+    opacity: 0.5;
 }
 
 .card__like-btn:active {

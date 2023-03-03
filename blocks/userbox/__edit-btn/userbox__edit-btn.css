@@ -8,9 +8,6 @@
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    position: absolute;
-    right: 0;
-    top: 16px;
 }
 
 .userbox__edit-btn:hover {
@@ -19,7 +16,6 @@
 
 @media screen and (max-width: 768px) {
     .userbox__edit-btn {
-        top: 34px;
         width: 18px;
         height: 18px;
     }
