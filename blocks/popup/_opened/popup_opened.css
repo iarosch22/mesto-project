@@ -8,6 +8,6 @@
 }
 
 .popup_opened {
-    animation:  slide 1s;
+    animation:  slide 200ms ease-in;
     display: flex;
 }
