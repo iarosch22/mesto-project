@@ -93,6 +93,10 @@ function addCard(nameValue, urlValue) {
     cardElement.querySelector('.card__image').setAttribute('alt', nameValue);
     cardElement.querySelector('.card__title').textContent = nameValue;
 
+    cardElement.querySelector('.card__like-btn').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('card__like-btn_active');
+    })
+
     cardContainer.prepend(cardElement);
 }
 
@@ -114,6 +118,8 @@ function handleFormAdd(evt) {
 }
 
 fordAdd.addEventListener('submit', handleFormAdd)
+
+/* render cards */
 
 function renderCard() {
     initialCards.forEach(function(item) {
