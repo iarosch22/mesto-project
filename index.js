@@ -93,7 +93,7 @@ function addCard(nameValue, urlValue) {
     cardElement.querySelector('.card__image').setAttribute('alt', nameValue);
     cardElement.querySelector('.card__title').textContent = nameValue;
 
-    cardContainer.append(cardElement);
+    cardContainer.prepend(cardElement);
 }
 
 const fordAdd = popupAdd.querySelector('.form');
