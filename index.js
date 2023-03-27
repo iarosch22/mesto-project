@@ -96,6 +96,10 @@ function addCard(nameValue, urlValue) {
     cardElement.querySelector('.card__like-btn').addEventListener('click', function (evt) {
         evt.target.classList.toggle('card__like-btn_active');
     })
+    cardElement.querySelector('.card__trash-btn').addEventListener('click', function (evt) {
+        const parentElem = evt.target.parentElement;
+        parentElem.remove();
+    })
 
     cardContainer.prepend(cardElement);
 }
