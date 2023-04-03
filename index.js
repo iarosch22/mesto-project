@@ -1,6 +1,3 @@
-
-const container = document.querySelector('.page');
-
 const initialCards = [
     {
       name: 'Архыз',
@@ -28,6 +25,8 @@ const initialCards = [
     }
   ];
 
+const container = document.querySelector('.page');
+
 const userbox = container.querySelector('.userbox');
 const popup = container.querySelector('.popup');
 const popupEdit = container.querySelector('.popup_edit');
@@ -39,14 +38,18 @@ const addBtn = userbox.querySelector('.userbox__add-btn');
 const closeBtns = container.getElementsByClassName('popup__close-btn');
 
 editBtn.addEventListener('click', function() {
-    popupEdit.classList.add('popup_opened');
+    openPopup(popupEdit);
 });
 addBtn.addEventListener('click', function() {
-    popupAdd.classList.add('popup_opened');
+    openPopup(popupAdd);
 })
 
 for(let i = 0;i < closeBtns.length;i++) {
     closeBtns[i].addEventListener('click', closePopup)
+}
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
 }
 
 function closePopup() {
