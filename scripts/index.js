@@ -48,6 +48,8 @@ const nameInput = popupEdit.querySelector('#username');
 const statusInput = popupEdit.querySelector('#status');
 
 editBtn.addEventListener('click', function() {
+    nameInput.value = userboxName.textContent;
+    statusInput.value = userboxStatus.textContent;
     openPopup(popupEdit);
 });
 addBtn.addEventListener('click', function() {
@@ -138,6 +140,9 @@ function handleFormAdd(evt) {
     const enteredUrl = urlValue.value;
 
     addCard(enteredPlacename, enteredUrl);
+
+    nameValue.value = '';
+    urlValue.value = '';
 
     closePopup(popupAdd);
 }
