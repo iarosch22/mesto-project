@@ -43,9 +43,9 @@ const popupImgCaption = popupImg.querySelector('.popup__caption-img');
 const userboxName = userbox.querySelector('.userbox__name');
 const userboxStatus = userbox.querySelector('.userbox__status');
 
-const formEdit = document.forms["edit-form"];
-const nameInput = popupEdit.querySelector('#username');
-const statusInput = popupEdit.querySelector('#status');
+const formEdit = document.forms['edit-form'];
+const nameInput = formEdit.username;
+const statusInput = formEdit.status;
 
 editBtn.addEventListener('click', function() {
     nameInput.value = userboxName.textContent;
@@ -127,9 +127,9 @@ function createCard(nameValue, urlValue) {
     return cardElement;
 }
 
-const fordAdd = document.forms["add-form"];
-const nameValue = popupAdd.querySelector('#placename');
-const urlValue = popupAdd.querySelector('#url-place');
+const formAdd = document.forms['add-form'];
+const nameValue = formAdd.placename;
+const urlValue = formAdd['url-place'];
 
 nameValue.value = nameValue.textContent;
 urlValue.value = urlValue.textContent;
@@ -147,7 +147,7 @@ function handleFormAdd(evt) {
     closePopup(popupAdd);
 }
 
-fordAdd.addEventListener('submit', handleFormAdd)
+formAdd.addEventListener('submit', handleFormAdd)
 
 /* render cards */
 
