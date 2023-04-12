@@ -141,8 +141,7 @@ function handleFormAdd(evt) {
 
     addCard(enteredPlacename, enteredUrl);
 
-    nameValue.value = '';
-    urlValue.value = '';
+    formAdd.reset();
 
     closePopup(popupAdd);
 }
