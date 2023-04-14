@@ -35,7 +35,6 @@ const popups = container.querySelectorAll('.popup');
 
 const editBtn = userbox.querySelector('.userbox__edit-btn');
 const addBtn = userbox.querySelector('.userbox__add-btn');
-const closeBtns = container.querySelectorAll('.popup__close-btn');
 
 const popupImgItem = popupImg.querySelector('.popup__img-item');
 const popupImgCaption = popupImg.querySelector('.popup__caption-img');
@@ -56,10 +55,14 @@ addBtn.addEventListener('click', function() {
     openPopup(popupAdd);
 })
 
-closeBtns.forEach((button) => {
-    const popup = button.closest('.popup');
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        const elem = evt.target;
 
-    button.addEventListener('click', () => closePopup(popup));
+        if(elem.classList.contains('popup') || elem.classList.contains('popup__close-btn')) {
+            closePopup(popup);
+        }
+    })
 })
 
 function openPopup(popup) {
