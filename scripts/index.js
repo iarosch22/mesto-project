@@ -46,6 +46,12 @@ const formEdit = document.forms['edit-form'];
 const nameInput = formEdit.username;
 const statusInput = formEdit.status;
 
+document.addEventListener('keydown', function(evt) {
+    if(evt.key === 'Escape') {
+        closePopup();
+    }
+})
+
 editBtn.addEventListener('click', function() {
     nameInput.value = userboxName.textContent;
     statusInput.value = userboxStatus.textContent;
@@ -70,7 +76,15 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-    popup.classList.remove('popup_opened');
+    if(!popup) {
+        popups.forEach(function(elem) {
+            if(elem.classList.contains('popup_opened')) {
+                elem.classList.remove('popup_opened');
+            }
+        })
+    } else {
+        popup.classList.remove('popup_opened');
+    }
 }
 
 function setImageData(src, caption) {
