@@ -11,3 +11,7 @@
     color: #000;
     padding-bottom: 12px;
 }
+
+.form__item:invalid {
+    border-color: red;
+}
