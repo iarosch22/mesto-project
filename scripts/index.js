@@ -66,7 +66,11 @@ popups.forEach((popup) => {
         const elem = evt.target;
 
         if(elem.classList.contains('popup') || elem.classList.contains('popup__close-btn')) {
-            closePopup(popup);
+            popups.forEach(function(popup) {
+                if(popup.classList.contains('popup_opened')) {
+                    closePopup(popup);
+                }
+            })
         }
     })
 })
@@ -76,15 +80,7 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-    if(!popup) {
-        popups.forEach(function(elem) {
-            if(elem.classList.contains('popup_opened')) {
-                elem.classList.remove('popup_opened');
-            }
-        })
-    } else {
-        popup.classList.remove('popup_opened');
-    }
+    popup.classList.remove('popup_opened');
 }
 
 function setImageData(src, caption) {
@@ -174,3 +170,51 @@ function renderCards() {
 }
 
 renderCards();
+
+/* validation */
+
+const showInputError = (formElem, inputElem, errorMessage) => {
+    const errorElement = formElem.querySelector(`.${inputElem.id}-error`);
+    console.log(errorElement);
+    inputElem.classList.add('form__item_type_error');
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('form__item-error_active');
+};
+
+const hideInputError = (formElem, inputElem) => {
+    const errorElement = formElem.querySelector(`.${inputElem.id}-error`);
+    inputElem.classList.remove('form__item_type_error');
+    errorElement.classList.remove('form__item-error_active');
+    errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElem, inputElem) => {
+    if (!inputElem.validity.valid) {
+      showInputError(formElem, inputElem, inputElem.validationMessage);
+    } else {
+      hideInputError(formElem, inputElem);
+    }
+};
+
+const setEventListeners = (formElem) => {
+    const inputList = Array.from(formElem.querySelectorAll('.form__item'));
+
+    inputList.forEach(inputElem => {
+        inputElem.addEventListener('input', function() {
+            checkInputValidity(formElem, inputElem);
+        })
+    })
+}
+
+const enableValidation = () => {
+    const formList = Array.from(document.querySelectorAll('.form'));
+
+    formList.forEach(formElem => {
+        formElem.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        });
+        setEventListeners(formElem);
+    })
+}
+
+enableValidation();
