@@ -198,10 +198,13 @@ const checkInputValidity = (formElem, inputElem) => {
 
 const setEventListeners = (formElem) => {
     const inputList = Array.from(formElem.querySelectorAll('.form__item'));
+    const btnElem = formElem.querySelector('.form__btn');
+    toggleButtonState(inputList, btnElem);
 
     inputList.forEach(inputElem => {
         inputElem.addEventListener('input', function() {
             checkInputValidity(formElem, inputElem);
+            toggleButtonState(inputList, btnElem);
         })
     })
 }
@@ -215,6 +218,22 @@ const enableValidation = () => {
         });
         setEventListeners(formElem);
     })
+}
+
+function hasInvalidInput(inputList) {
+    return inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    })
+}
+
+function toggleButtonState(inputList, btnElem) {
+    if(hasInvalidInput(inputList)) {
+        btnElem.disabled = true;
+        btnElem.classList.add('btn_inactive');
+    } else {
+        btnElem.disabled = false;
+        btnElem.classList.remove('btn_inactive');
+    }
 }
 
 enableValidation();
