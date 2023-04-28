@@ -48,7 +48,11 @@ const statusInput = formEdit.status;
 
 document.addEventListener('keydown', function(evt) {
     if(evt.key === 'Escape') {
-        closePopup();
+        popups.forEach(function(popup) {
+            if(popup.classList.contains('popup_opened')) {
+                closePopup(popup);
+            }
+        })
     }
 })
 
@@ -175,7 +179,6 @@ renderCards();
 
 const showInputError = (formElem, inputElem, errorMessage) => {
     const errorElement = formElem.querySelector(`.${inputElem.id}-error`);
-    console.log(errorElement);
     inputElem.classList.add('form__item_type_error');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('form__item-error_active');
@@ -189,7 +192,13 @@ const hideInputError = (formElem, inputElem) => {
 };
 
 const checkInputValidity = (formElem, inputElem) => {
-    if (!inputElem.validity.valid) {
+    if(inputElem.validity.patternMismatch) {
+        inputElem.setCustomValidity(inputElem.dataset.errorMessage);
+    } else {
+        inputElem.setCustomValidity('');
+    }
+
+    if(!inputElem.validity.valid) {
       showInputError(formElem, inputElem, inputElem.validationMessage);
     } else {
       hideInputError(formElem, inputElem);
@@ -229,10 +238,10 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, btnElem) {
     if(hasInvalidInput(inputList)) {
         btnElem.disabled = true;
-        btnElem.classList.add('btn_inactive');
+        btnElem.classList.add('form__btn_state_inactive');
     } else {
         btnElem.disabled = false;
-        btnElem.classList.remove('btn_inactive');
+        btnElem.classList.remove('form__btn_state_inactive');
     }
 }
 
