@@ -46,6 +46,13 @@ const formEdit = document.forms['edit-form'];
 const nameInput = formEdit.username;
 const statusInput = formEdit.status;
 
+const cardContainer = container.querySelector('.cards');
+const cardTemplate = document.querySelector('#card-template').content;
+
+const formAdd = document.forms['add-form'];
+const nameValue = formAdd.placename;
+const urlValue = formAdd['url-place'];
+
 document.addEventListener('keydown', function(evt) {
     if(evt.key === 'Escape') {
         popups.forEach(function(popup) {
@@ -113,9 +120,6 @@ formEdit.addEventListener('submit', handleFormEdit);
 
 /* form-add */
 
-const cardContainer = container.querySelector('.cards');
-const cardTemplate = document.querySelector('#card-template').content;
-
 function addCard(nameValue, urlValue) {
     const cardElement = createCard(nameValue, urlValue);
 
@@ -143,10 +147,6 @@ function createCard(nameValue, urlValue) {
 
     return cardElement;
 }
-
-const formAdd = document.forms['add-form'];
-const nameValue = formAdd.placename;
-const urlValue = formAdd['url-place'];
 
 nameValue.value = nameValue.textContent;
 urlValue.value = urlValue.textContent;
