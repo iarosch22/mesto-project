@@ -1,4 +1,4 @@
-import './pages/index.css';
+import '../src/pages/index.css';
 
 const initialCards = [
     {
