@@ -7,6 +7,6 @@
 **Ссылки**
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
-* [Ссылка на деплой](https://iarosch22.github.io/mesto-project/praktikum/index.html)
+* [Ссылка на деплой](https://iarosch22.github.io/mesto-project/praktikum/dist/index.html)
 
 
