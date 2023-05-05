@@ -1,60 +1,36 @@
 import '../pages/index.css';
+import { renderCards } from './card';
+import { handleFormAdd, handleFormEdit } from './modal';
+import { closePopup, openPopup } from './utils';
 import { enableValidation } from './validate';
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
 
 const container = document.querySelector('.page');
 
-const userbox = container.querySelector('.userbox');
-const popupEdit = container.querySelector('.popup_edit');
-const popupAdd = container.querySelector('.popup_add');
-const popupImg = container.querySelector('.popup_img');
-const popups = container.querySelectorAll('.popup');
+export const userbox = container.querySelector('.userbox');
+export const popupEdit = container.querySelector('.popup_edit');
+export const popupAdd = container.querySelector('.popup_add');
+export const popupImg = container.querySelector('.popup_img');
+export const popups = container.querySelectorAll('.popup');
 
-const editBtn = userbox.querySelector('.userbox__edit-btn');
-const addBtn = userbox.querySelector('.userbox__add-btn');
+export const editBtn = userbox.querySelector('.userbox__edit-btn');
+export const addBtn = userbox.querySelector('.userbox__add-btn');
 
-const popupImgItem = popupImg.querySelector('.popup__img-item');
-const popupImgCaption = popupImg.querySelector('.popup__caption-img');
+export const popupImgItem = popupImg.querySelector('.popup__img-item');
+export const popupImgCaption = popupImg.querySelector('.popup__caption-img');
 
-const userboxName = userbox.querySelector('.userbox__name');
-const userboxStatus = userbox.querySelector('.userbox__status');
+export const userboxName = userbox.querySelector('.userbox__name');
+export const userboxStatus = userbox.querySelector('.userbox__status');
 
-const formEdit = document.forms['edit-form'];
-const nameInput = formEdit.username;
-const statusInput = formEdit.status;
+export const formEdit = document.forms['edit-form'];
+export const nameInput = formEdit.username;
+export const statusInput = formEdit.status;
 
-const cardContainer = container.querySelector('.cards');
-const cardTemplate = document.querySelector('#card-template').content;
+export const cardContainer = container.querySelector('.cards');
+export const cardTemplate = document.querySelector('#card-template').content;
 
-const formAdd = document.forms['add-form'];
-const nameValue = formAdd.placename;
-const urlValue = formAdd['url-place'];
+export const formAdd = document.forms['add-form'];
+export const nameValue = formAdd.placename;
+export const urlValue = formAdd['url-place'];
 
 document.addEventListener('keydown', function(evt) {
     if(evt.key === 'Escape') {
@@ -89,95 +65,17 @@ popups.forEach((popup) => {
     })
 })
 
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-}
-
-function setImageData(src, caption) {
-    popupImgItem.setAttribute('src', '');
-    popupImgItem.setAttribute('alt', '');
-
-    popupImgItem.setAttribute('src', src);
-    popupImgItem.setAttribute('alt', caption);
-    popupImgCaption.textContent = caption;
-}
-
 /* form-edit */
-
-function handleFormEdit(evt) {
-    evt.preventDefault();
-    const enteredName = nameInput.value;
-    const enteredStatus = statusInput.value;
-
-    userboxName.textContent = enteredName;
-    userboxStatus.textContent = enteredStatus;
-
-    closePopup(popupEdit);
-}
 
 formEdit.addEventListener('submit', handleFormEdit);
 
 /* form-add */
 
-function addCard(nameValue, urlValue) {
-    const cardElement = createCard(nameValue, urlValue);
-
-    cardContainer.prepend(cardElement);
-}
-
-function createCard(nameValue, urlValue) {
-    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-    const cardImage = cardElement.querySelector('.card__image');
-
-    cardImage.setAttribute('src', urlValue);
-    cardImage.setAttribute('alt', nameValue);
-    cardElement.querySelector('.card__title').textContent = nameValue;
-
-    cardElement.querySelector('.card__like-btn').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('card__like-btn_active');
-    });
-    cardElement.querySelector('.card__trash-btn').addEventListener('click', function (evt) {
-        cardElement.remove();
-    });
-    cardImage.addEventListener('click', function(evt) {
-        setImageData(urlValue, nameValue);
-        openPopup(popupImg);
-    });
-
-    return cardElement;
-}
-
-nameValue.value = nameValue.textContent;
-urlValue.value = urlValue.textContent;
-
-function handleFormAdd(evt) {
-    evt.preventDefault();
-    const enteredPlacename = nameValue.value;
-    const enteredUrl = urlValue.value;
-
-    addCard(enteredPlacename, enteredUrl);
-
-    formAdd.reset();
-
-    closePopup(popupAdd);
-}
-
 formAdd.addEventListener('submit', handleFormAdd)
 
 /* render cards */
 
-function renderCards() {
-    initialCards.forEach(function(item) {
-        addCard(item.name, item.link);
-    })
-}
-
 renderCards();
-
 
 // validation 
 
