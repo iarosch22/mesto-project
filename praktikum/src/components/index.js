@@ -181,4 +181,11 @@ renderCards();
 
 // validation 
 
-enableValidation();
+enableValidation({
+    formSelector: '.form',
+    inputSelector: '.form__item',
+    submitButtonSelector: '.form__btn',
+    inactiveButtonClass: 'form__btn_state_inactive',
+    inputErrorClass: 'form__item_type_error',
+    errorClass: 'form__item-error_active'
+  }); 
