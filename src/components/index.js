@@ -32,16 +32,6 @@ export const formAdd = document.forms['add-form'];
 export const nameValue = formAdd.placename;
 export const urlValue = formAdd['url-place'];
 
-document.addEventListener('keydown', function(evt) {
-    if(evt.key === 'Escape') {
-        popups.forEach(function(popup) {
-            if(popup.classList.contains('popup_opened')) {
-                closePopup(popup);
-            }
-        })
-    }
-})
-
 editBtn.addEventListener('click', function() {
     nameInput.value = userboxName.textContent;
     statusInput.value = userboxStatus.textContent;
@@ -77,7 +67,7 @@ formAdd.addEventListener('submit', handleFormAdd)
 
 renderCards();
 
-// validation 
+// validation
 
 enableValidation({
     formSelector: '.form',
@@ -86,4 +76,4 @@ enableValidation({
     inactiveButtonClass: 'form__btn_state_inactive',
     inputErrorClass: 'form__item_type_error',
     errorClass: 'form__item-error_active'
-  }); 
+  });
