@@ -20,19 +20,13 @@ function handleFormAdd(evt) {
     evt.preventDefault();
     const enteredPlacename = nameValue.value;
     const enteredUrl = urlValue.value;
+    const submitBtn = formAdd.querySelector('.form__btn');
 
     addCard(enteredPlacename, enteredUrl);
 
     formAdd.reset();
 
-    enableValidation({
-        formSelector: '.form',
-        inputSelector: '.form__item',
-        submitButtonSelector: '.form__btn',
-        inactiveButtonClass: 'form__btn_state_inactive',
-        inputErrorClass: 'form__item_type_error',
-        errorClass: 'form__item-error_active'
-      });
+    submitBtn.disabled = true;
 
     closePopup(popupAdd);
 }
