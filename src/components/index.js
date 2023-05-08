@@ -1,4 +1,5 @@
 import '../pages/index.css';
+import { getInitialCards, getUserInfo } from './api';
 import { renderCards } from './card';
 import { handleFormAdd, handleFormEdit } from './modal';
 import { closePopup, openPopup } from './utils';
@@ -20,6 +21,7 @@ export const popupImgCaption = popupImg.querySelector('.popup__caption-img');
 
 export const userboxName = userbox.querySelector('.userbox__name');
 export const userboxStatus = userbox.querySelector('.userbox__status');
+export const userboxAvatar = userbox.querySelector('.userbox__avatar');
 
 export const formEdit = document.forms['edit-form'];
 export const nameInput = formEdit.username;
@@ -63,11 +65,7 @@ formEdit.addEventListener('submit', handleFormEdit);
 
 formAdd.addEventListener('submit', handleFormAdd)
 
-/* render cards */
-
-renderCards();
-
-// validation
+/* validation */
 
 enableValidation({
     formSelector: '.form',
@@ -76,4 +74,30 @@ enableValidation({
     inactiveButtonClass: 'form__btn_state_inactive',
     inputErrorClass: 'form__item_type_error',
     errorClass: 'form__item-error_active'
-  });
+});
+
+/* render cards */
+
+getInitialCards()
+    .then((res) => {
+        renderCards(res);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+/* create userbox */
+
+getUserInfo()
+    .then((res) => {
+        userboxName.textContent = res.name;
+        userboxStatus.textContent = res.about;
+        userboxAvatar.src = res.avatar;
+    })
+    .catch((err) => {
+        console.log(err);
+        userboxName.textContent = 'Жак-Ив Кусто';
+        userboxStatus.textContent = 'Исследователь океана';
+        userboxAvatar.src = '<%=require("./images/avatar.png")%>';
+    })
+

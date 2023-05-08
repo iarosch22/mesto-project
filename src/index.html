@@ -13,12 +13,12 @@
         </header>
         <main class="content">
             <section class="userbox">
-                <img src="<%=require('./images/avatar.png')%>" alt="аватар" class="userbox__avatar">
+                <img alt="аватар" class="userbox__avatar">
                 <div class="userbox__profile">
                     <div class="userbox__info">
                         <div class="userbox__text">
-                            <h1 class="userbox__name">Жак-Ив Кусто</h1>
-                            <p class="userbox__status">Исследователь океана</p>
+                            <h1 class="userbox__name"></h1>
+                            <p class="userbox__status"></p>
                         </div>
                         <button class="userbox__edit-btn" type="button"></button>
                     </div>
@@ -70,7 +70,10 @@
             <img class="card__image">
             <div class="card__caption">
                 <h2 class="card__title"></h2>
-                <button class="card__like-btn" type="button"></button>
+                <div class="card__likebox">
+                    <button class="card__like-btn" type="button"></button>
+                    <span class="card__like-count">0</span>
+                </div>
             </div>
             <button class="card__trash-btn" type="button"></button>
         </article>
