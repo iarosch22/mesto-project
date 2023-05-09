@@ -26,6 +26,7 @@ export const userboxStatus = userbox.querySelector('.userbox__status');
 export const userboxAvatar = userbox.querySelector('.userbox__avatar');
 
 export const formEdit = document.forms['edit-form'];
+export const submitBtnEdit = formEdit.querySelector('.form__btn');
 export const nameInput = formEdit.username;
 export const statusInput = formEdit.status;
 
@@ -33,10 +34,12 @@ export const cardContainer = container.querySelector('.cards');
 export const cardTemplate = document.querySelector('#card-template').content;
 
 export const formAdd = document.forms['add-form'];
+export const submitBtnAdd = formAdd.querySelector('.form__btn');
 export const nameValue = formAdd.placename;
 export const urlValue = formAdd['url-place'];
 
 export const formUpdateAvatar = document.forms['update_avatar-form'];
+export const submitBtnUpdate = formUpdateAvatar.querySelector('.form__btn');
 export const urlAvatar = formUpdateAvatar['url-avatar'];
 
 editBtn.addEventListener('click', function() {
@@ -88,29 +91,20 @@ enableValidation({
     errorClass: 'form__item-error_active'
 });
 
-/* render cards */
+/* render cards and create userbox*/
 
-getInitialCards()
-    .then((res) => {
-        renderCards(res);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+Promise.all([
+    getUserInfo(),
+    getInitialCards()
+])
+.then((values) => {
+    userboxName.textContent = values[0].name;
+    userboxStatus.textContent = values[0].about;
+    userboxAvatar.src = values[0].avatar;
+    setMyId(values[0]);
 
-/* create userbox */
-
-getUserInfo()
-    .then((res) => {
-        userboxName.textContent = res.name;
-        userboxStatus.textContent = res.about;
-        userboxAvatar.src = res.avatar;
-        setMyId(res);
-    })
-    .catch((err) => {
-        console.log(err);
-        userboxName.textContent = 'Жак-Ив Кусто';
-        userboxStatus.textContent = 'Исследователь океана';
-        userboxAvatar.src = '<%=require("./images/avatar.png")%>';
-    })
-
+    renderCards(values[1]);
+})
+.catch((err) => {
+    console.log(err);
+})

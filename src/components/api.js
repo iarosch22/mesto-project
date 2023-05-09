@@ -6,30 +6,25 @@ const config = {
     }
 }
 
+const getResponseData = (res) => {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    return res.json();
+}
+
 export const getInitialCards = () => {
     return fetch(`${config.baseUrl}/cards`, {
         headers: config.headers
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    .then(res => getResponseData(res));
 }
 
 export const getUserInfo = () => {
     return fetch(`${config.baseUrl}/users/me`, {
         headers: config.headers
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    .then(res => getResponseData(res));
 }
 
 export const setUserData = (username, status) => {
@@ -41,13 +36,7 @@ export const setUserData = (username, status) => {
             about: status
         })
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => getResponseData(res))
 }
 
 export const createNewCard = (placename, urlToPlace) => {
@@ -59,13 +48,7 @@ export const createNewCard = (placename, urlToPlace) => {
             link: urlToPlace
         })
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => getResponseData(res))
 }
 
 export const deleteCard = (cardId) => {
@@ -76,13 +59,7 @@ export const deleteCard = (cardId) => {
             _id: cardId
         })
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json()
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => getResponseData(res))
 }
 
 export const deleteLike = (cardId) => {
@@ -93,13 +70,7 @@ export const deleteLike = (cardId) => {
             _id: cardId
         })
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json()
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => getResponseData(res))
 }
 
 export const setLike = (cardId) => {
@@ -110,13 +81,7 @@ export const setLike = (cardId) => {
             _id: cardId
         })
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json()
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => getResponseData(res))
 }
 
 export const updateAvatar = (urlAvatar) => {
@@ -127,11 +92,5 @@ export const updateAvatar = (urlAvatar) => {
             avatar: urlAvatar
         })
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => getResponseData(res))
 }

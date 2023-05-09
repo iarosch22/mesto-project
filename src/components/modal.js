@@ -1,15 +1,14 @@
-import { formAdd, formEdit, formUpdateAvatar, nameInput, nameValue, popupAdd, popupEdit, popupUpdateAvatar, statusInput, urlAvatar, urlValue, userboxAvatar, userboxName, userboxStatus } from ".";
+import { formAdd, formUpdateAvatar, nameInput, nameValue, popupAdd, popupEdit, popupUpdateAvatar, statusInput, submitBtnAdd, submitBtnEdit, submitBtnUpdate, urlAvatar, urlValue, userboxAvatar, userboxName, userboxStatus } from ".";
 import { createNewCard, setUserData, updateAvatar } from "./api";
 import { addCard } from "./card";
-import { closePopup } from "./utils";
+import { closePopup, renderLoading } from "./utils";
 
 /* form-edit */
 
 function handleFormEdit(evt) {
     evt.preventDefault();
-    const submitBtn = formEdit.querySelector('.form__btn');
 
-    submitBtn.value = 'Сохранение...';
+    submitBtnEdit.value = renderLoading(true);
 
     const enteredName = nameInput.value;
     const enteredStatus = statusInput.value;
@@ -18,67 +17,63 @@ function handleFormEdit(evt) {
     .then((res) => {
         userboxName.textContent = res.name;
         userboxStatus.textContent = res.about;
+        closePopup(popupEdit);
     })
     .catch((err) => {
         console.log(err);
-        userboxName.textContent = enteredName;
-        userboxStatus.textContent = enteredStatus;
     })
     .finally(() => {
-        submitBtn.value = 'Сохранить';
+        submitBtnEdit.value = renderLoading(false);
     })
-
-    closePopup(popupEdit);
 }
 
 function handleFormAdd(evt) {
     evt.preventDefault();
     const enteredPlacename = nameValue.value;
     const enteredUrl = urlValue.value;
-    const submitBtn = formAdd.querySelector('.form__btn');
-    submitBtn.value = 'Создание...';
+
+    submitBtnAdd.value = renderLoading(true);
 
     createNewCard(enteredPlacename, enteredUrl)
     .then((res) => {
         addCard(res);
+
+        closePopup(popupAdd);
     })
     .catch((err) => {
         console.log(err);
     })
     .finally(() => {
-        submitBtn.value = 'Создание...';
+        submitBtnAdd.value = renderLoading(false);
     })
 
     formAdd.reset();
 
-    submitBtn.disabled = true;
-
-    closePopup(popupAdd);
+    submitBtnAdd.disabled = true;
 }
 
 function handleFormUpdateAvatar(evt) {
     evt.preventDefault();
     const enteredUrlAvatar = urlAvatar.value;
-    const submitBtn = formUpdateAvatar.querySelector('.form__btn');
-    submitBtn.value = 'Сохранение...';
+
+    submitBtnUpdate.value = renderLoading(true);
 
     updateAvatar(enteredUrlAvatar)
     .then((res) => {
         userboxAvatar.src = res.avatar;
+
+        closePopup(popupUpdateAvatar);
     })
     .catch((err) => {
         console.log(err);
     })
     .finally(() => {
-        submitBtn.value = 'Сохранить';
+        submitBtnUpdate.value = renderLoading(false);
     })
-
 
     formUpdateAvatar.reset();
 
-    submitBtn.disabled = true;
-
-    closePopup(popupUpdateAvatar);
+    submitBtnUpdate.disabled = true;
 }
 
 export { handleFormEdit, handleFormAdd, handleFormUpdateAvatar }

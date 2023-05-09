@@ -17,4 +17,12 @@ function closeByEscape(evt) {
     }
 }
 
-export { openPopup, closePopup, closeByEscape }
+function renderLoading(state) {
+    if(state) {
+        return 'Сохранение...';
+    } else {
+        return 'Сохранить'
+    }
+}
+
+export { openPopup, closePopup, closeByEscape, renderLoading }
