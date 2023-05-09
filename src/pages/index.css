@@ -17,6 +17,8 @@
 @import url(../blocks/userbox/__status/userbox__status.css);
 @import url(../blocks/userbox/__edit-btn/userbox__edit-btn.css);
 @import url(../blocks/userbox/__add-btn/userbox__add-btn.css);
+@import url(../blocks/userbox/__avatar-container/userbox__avatar-container.css);
+@import url(../blocks/userbox/__avatar/_overlay/userbox__avatar_overlay.css);
 
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);
@@ -28,6 +30,7 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__likebox/card__likebox.css);
 @import url(../blocks/card/__like-count/card__like-count.css);
+@import url(../blocks/card/__trash-btn/_hidden/card__trash-btn_hidden.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

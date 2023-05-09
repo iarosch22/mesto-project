@@ -1,0 +1,8 @@
+.userbox__avatar-container {
+    cursor: pointer;
+    position: relative;
+}
+
+.userbox__avatar-container:hover .userbox__avatar_overlay {
+    opacity: 1;
+}

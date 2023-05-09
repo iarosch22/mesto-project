@@ -1,7 +1,7 @@
 import '../pages/index.css';
 import { getInitialCards, getUserInfo } from './api';
-import { renderCards } from './card';
-import { handleFormAdd, handleFormEdit } from './modal';
+import { renderCards, setMyId } from './card';
+import { handleFormAdd, handleFormEdit, handleFormUpdateAvatar } from './modal';
 import { closePopup, openPopup } from './utils';
 import { enableValidation } from './validate';
 
@@ -11,10 +11,12 @@ export const userbox = container.querySelector('.userbox');
 export const popupEdit = container.querySelector('.popup_edit');
 export const popupAdd = container.querySelector('.popup_add');
 export const popupImg = container.querySelector('.popup_img');
+export const popupUpdateAvatar = container.querySelector('.popup_update-avatar');
 export const popups = container.querySelectorAll('.popup');
 
 export const editBtn = userbox.querySelector('.userbox__edit-btn');
 export const addBtn = userbox.querySelector('.userbox__add-btn');
+export const updateAvatar = userbox.querySelector('.userbox__avatar-container');
 
 export const popupImgItem = popupImg.querySelector('.popup__img-item');
 export const popupImgCaption = popupImg.querySelector('.popup__caption-img');
@@ -34,6 +36,9 @@ export const formAdd = document.forms['add-form'];
 export const nameValue = formAdd.placename;
 export const urlValue = formAdd['url-place'];
 
+export const formUpdateAvatar = document.forms['update_avatar-form'];
+export const urlAvatar = formUpdateAvatar['url-avatar'];
+
 editBtn.addEventListener('click', function() {
     nameInput.value = userboxName.textContent;
     statusInput.value = userboxStatus.textContent;
@@ -41,6 +46,9 @@ editBtn.addEventListener('click', function() {
 });
 addBtn.addEventListener('click', function() {
     openPopup(popupAdd);
+})
+updateAvatar.addEventListener('click', function() {
+    openPopup(popupUpdateAvatar);
 })
 
 popups.forEach((popup) => {
@@ -63,7 +71,11 @@ formEdit.addEventListener('submit', handleFormEdit);
 
 /* form-add */
 
-formAdd.addEventListener('submit', handleFormAdd)
+formAdd.addEventListener('submit', handleFormAdd);
+
+/* form-update-avatar */
+
+formUpdateAvatar.addEventListener('submit', handleFormUpdateAvatar);
 
 /* validation */
 
@@ -93,6 +105,7 @@ getUserInfo()
         userboxName.textContent = res.name;
         userboxStatus.textContent = res.about;
         userboxAvatar.src = res.avatar;
+        setMyId(res);
     })
     .catch((err) => {
         console.log(err);

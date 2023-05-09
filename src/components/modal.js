@@ -1,5 +1,5 @@
-import { formAdd, nameInput, nameValue, popupAdd, popupEdit, statusInput, urlValue, userboxName, userboxStatus } from ".";
-import { createNewCard, setUserData } from "./api";
+import { formAdd, formEdit, formUpdateAvatar, nameInput, nameValue, popupAdd, popupEdit, popupUpdateAvatar, statusInput, urlAvatar, urlValue, userboxAvatar, userboxName, userboxStatus } from ".";
+import { createNewCard, setUserData, updateAvatar } from "./api";
 import { addCard } from "./card";
 import { closePopup } from "./utils";
 
@@ -7,6 +7,10 @@ import { closePopup } from "./utils";
 
 function handleFormEdit(evt) {
     evt.preventDefault();
+    const submitBtn = formEdit.querySelector('.form__btn');
+
+    submitBtn.value = 'Сохранение...';
+
     const enteredName = nameInput.value;
     const enteredStatus = statusInput.value;
 
@@ -20,6 +24,10 @@ function handleFormEdit(evt) {
         userboxName.textContent = enteredName;
         userboxStatus.textContent = enteredStatus;
     })
+    .finally(() => {
+        console.log('tutut');
+        submitBtn.value = 'Сохранить';
+    })
 
     closePopup(popupEdit);
 }
@@ -29,6 +37,7 @@ function handleFormAdd(evt) {
     const enteredPlacename = nameValue.value;
     const enteredUrl = urlValue.value;
     const submitBtn = formAdd.querySelector('.form__btn');
+    submitBtn.value = 'Создание...';
 
     createNewCard(enteredPlacename, enteredUrl)
     .then((res) => {
@@ -36,6 +45,9 @@ function handleFormAdd(evt) {
     })
     .catch((err) => {
         console.log(err);
+    })
+    .finally(() => {
+        submitBtn.value = 'Создание...';
     })
 
     formAdd.reset();
@@ -45,4 +57,29 @@ function handleFormAdd(evt) {
     closePopup(popupAdd);
 }
 
-export { handleFormEdit, handleFormAdd }
+function handleFormUpdateAvatar(evt) {
+    evt.preventDefault();
+    const enteredUrlAvatar = urlAvatar.value;
+    const submitBtn = formUpdateAvatar.querySelector('.form__btn');
+    submitBtn.value = 'Сохранение...';
+
+    updateAvatar(enteredUrlAvatar)
+    .then((res) => {
+        userboxAvatar.src = res.avatar;
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+    .finally(() => {
+        submitBtn.value = 'Сохранить';
+    })
+
+
+    formUpdateAvatar.reset();
+
+    submitBtn.disabled = true;
+
+    closePopup(popupUpdateAvatar);
+}
+
+export { handleFormEdit, handleFormAdd, handleFormUpdateAvatar }

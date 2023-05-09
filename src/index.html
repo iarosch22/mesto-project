@@ -13,7 +13,10 @@
         </header>
         <main class="content">
             <section class="userbox">
-                <img alt="аватар" class="userbox__avatar">
+                <div class="userbox__avatar-container">
+                    <img alt="аватар" class="userbox__avatar">
+                    <div class="userbox__avatar_overlay"></div>
+                </div>
                 <div class="userbox__profile">
                     <div class="userbox__info">
                         <div class="userbox__text">
@@ -63,6 +66,17 @@
                 <figcaption class="popup__caption-img"></figcaption>
                 <button class="popup__close-btn" type="button"></button>
             </figure>
+        </div>
+        <div class="popup popup_update-avatar">
+            <div class="popup__container">
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="form" name="update_avatar-form" novalidate>
+                    <input type="url" name="url-avatar" id="url-avatar" class="form__item" placeholder="Ссылка на аватар" required>
+                    <span class='form__item-error url-avatar-error'></span>
+                    <input type="submit" value="Сохранить" class="form__btn">
+                </form>
+                <button class="popup__close-btn" type="button"></button>
+            </div>
         </div>
     </div>
     <template id="card-template">
