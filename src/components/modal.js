@@ -25,7 +25,6 @@ function handleFormEdit(evt) {
         userboxStatus.textContent = enteredStatus;
     })
     .finally(() => {
-        console.log('tutut');
         submitBtn.value = 'Сохранить';
     })
 
