@@ -68,20 +68,19 @@ function setMyId(data) {
 
 function setLikes(cardID, btnLike, likeCount) {
   if(btnLike.classList.contains('card__like-btn_active')) {
-    btnLike.classList.remove('card__like-btn_active');
 
     deleteLike(cardID)
     .then(res => {
+      btnLike.classList.remove('card__like-btn_active');
       likeCount.textContent = res.likes.length;
     })
     .catch((err) => {
       console.log(err);
     })
   } else {
-    btnLike.classList.add('card__like-btn_active');
-
     setLike(cardID)
     .then(res => {
+      btnLike.classList.add('card__like-btn_active');
       likeCount.textContent = res.likes.length;
     })
     .catch((err) => {
